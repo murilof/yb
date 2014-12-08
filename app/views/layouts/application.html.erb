@@ -1,33 +1,81 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Yb</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
+  <meta charset=utf-8>
+    <title>Yearbook</title>
+ 
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+
+    
+    <!-- the following style is for demonstartion purposes only and is not needed for anything but inspiration -->
+    <style>
+    header {padding-top:5px; border-bottom:1px solid #ccc; padding-bottom:5px;}
+    header .navbar-inner {font-size:3.52em;}
+    header nav ul li {float:left; margin-top:2px;}
+    header nav ul li a {display:block; padding:5px 15px; border-right:1px solid #eee; font-size:1.52em; font-family:Georgia, "Times New Roman", Times, serif; text-decoration:none;}
+    header nav ul li a:hover {background-color:#eee; border-right:1px solid #ccc; text-shadow:-1px -1px 0px #fff;}
+    header nav ul li.last a {border-right:none;}
+    
+    footer {text-align:center; color:#666; font-size:0.9em; padding:4px 0px;}
+    
+    .report_bugs {
+      -webkit-transform: rotate(-90deg);
+      -moz-transform: rotate(-90deg);
+      transform: rotate(-90deg);
+      position: absolute;
+      left:-45px;
+      top:210px;
+      background-color:#f00;
+      color:#fff;
+      z-index:99;
+      filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+      text-decoration:none;
+      font-family:Georgia, "Times New Roman", Times, serif;
+      font-size:1.2em;
+      padding:2px 5px;
+    }
+  </style>
+    <!--[if IE]> <style> .report_bugs {left:0px;} </style>  <![endif]-->
+    </head>
+
 <body>
 
+<a href="http://www.yearbookyourself.com" class="report_bugs" target="_blank">Yearbook Yourself</a>
 <div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <p class="navbar-text pull-right">
-        <% if user_signed_in? %>
-          Logged in as <strong><%= current_user.email %></strong>.
-          <%= link_to 'Edite seu perfil', edit_user_registration_path, :class => 'navbar-link' %> |
-          <%= link_to "Sair", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-        <% else %>
-          <%= link_to "Cadastre-se", new_user_registration_path, :class => 'navbar-link'  %> |
-          <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-        <% end %>
-      </p>
-    </div>
+  <header>
+      
+        <div class="navbar-inner"><font color="DodgerBlue"><center>Yearbook</center></font></div><!-- logo col_7 -->
+        
+        <nav class="avbar-inner">
+          <ul class="container">
+          <p class="navbar-text pull-right">
+            <% if user_signed_in? %>
+              Logged in as <strong><%= current_user.email %></strong>.
+             <li class="divider-vertical"><a><%= link_to 'Edite seu perfil', edit_user_registration_path, :class => 'navbar-link' %></a></li> |
+              <li class="divider-vertical"><a><%= link_to "Sair", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></a></li>
+            <% else %>
+               <li class="active"><a><%= link_to "Cadastre-se", new_user_registration_path, :class => 'navbar-link'  %></a></li> |
+               <li class="active"><a><%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %></a></li>
+            <% end %>
+          </p>              
+          </ul>
+        </nav><!-- nav col_9 -->
+        <div class="clear"></div><!-- clear -->
+    </header>
+</div><!-- row -->
+
+<div class="container">
+  <div class="row">
+    <div class="span9"><%= yield %></div>
   </div>
 </div>
+<footer class="row">
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
-<%= yield %>
+  <div class="col_16 col">all rights reserved &copy; <a href="http://www.bcc.unifal-mg.edu.br/portal" target="_blank">bcc unifal</a> | Yearbord</div>
+
+</footer>
 
 </body>
 </html>
